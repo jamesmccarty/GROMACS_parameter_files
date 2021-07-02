@@ -4,13 +4,12 @@ integrator	= md		; leap-frog integrator
 nsteps		= 500000	; 2 * 500000 = 1000 ps (1 ns)
 dt		    = 0.002		; 2 fs
 ; Output control
-nstxout		        = 5000		; save coordinates every 10.0 ps
-nstvout		        = 5000		; save velocities every 10.0 ps
-nstenergy	        = 5000		; save energies every 10.0 ps
-nstlog		        = 5000		; update log file every 10.0 ps
-nstxout-compressed  = 5000      ; save compressed coordinates every 10.0 ps
-                                ; nstxout-compressed replaces nstxtcout
-compressed-x-grps   = System    ; replaces xtc-grps
+nstxout-compressed = 5000
+nstxout = 0
+nstvout = 0
+nstfout = 0
+nstenergy       = 5000           ; save energies every 10.0 ps
+nstlog          = 5000           ; update log file every 10.0 ps
 ; Bond parameters
 continuation	        = yes		; Restarting after NPT
 constraint_algorithm    = lincs	    ; holonomic constraints
@@ -20,9 +19,11 @@ lincs_order	            = 4		    ; also related to accuracy
 ; Neighborsearching
 cutoff-scheme   = Verlet
 ns_type		    = grid		; search neighboring grid cells
-nstlist		    = 10	    ; 20 fs, largely irrelevant with Verlet scheme
+nstlist		    = 20	    ; 20 fs, largely irrelevant with Verlet scheme
 rcoulomb	    = 1.0		; short-range electrostatic cutoff (in nm)
 rvdw		    = 1.0		; short-range van der Waals cutoff (in nm)
+rvdw-switch          = 0.95
+rlist               = 1.0
 ; Electrostatics
 coulombtype	    = PME		; Particle Mesh Ewald for long-range electrostatics
 pme_order	    = 4		    ; cubic interpolation

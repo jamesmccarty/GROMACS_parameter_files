@@ -1,0 +1,21 @@
+# Sample
+
+# Basic job attributes
+Executable	= OMP+MPIscript.parallel
+Arguments	= $(gromacs) mdrun -v -deffnm nvt
+gromacs		= /cluster/research-groups/mccarty/bin/bin/gmx_mpi
+
+Universe	= parallel
+
+Output		= o.$(Process)
+Error		= e.$(Process)
+Log		= condor_log
+
+# How much memory each process will need --
+# please adjust this to reflect your needs.
+request_memory	= 1024
+
+request_cpus	= 12
+machine_count	= 1
+
+queue 
